@@ -26,25 +26,27 @@ def generate_sales_report():
         price = melon_prices[melon_type]
         revenue = price * melon_tallies[melon_type]
         total_revenue += revenue
-        print "We sold %d %s melons at %0.2f each for a total of %0.2f" % (melon_tallies[melon_type], melon_type, price, revenue)
+    print "We sold %d %s melons at %0.2f each for a total of %0.2f" % (melon_tallies[melon_type], melon_type, price, revenue)
 
 print "*" * section_separator
 
-f = open("orders-with-sales.txt")
-sales = [0, 0]
-for line in f:
-    d = line.split("|")
-    if d[1] == "0":
-        sales[0] += float(d[3])
+def generate_internet_salespeople_report(file_name):
+    file_name = open(file_name)
+    sales = [0, 0]
+    for line in f:
+        d = line.split("|")
+        if d[1] == "0":
+            sales[0] += float(d[3])
+        else:
+            sales[1] += float(d[3])
+    print "Salespeople generated %0.2f in revenue." % sales[1]
+    print "Internet sales generated %0.2f in revenue." % sales[0]
+    if sales[1] > sales[0]:
+        print "Guess there's some value to those salespeople after all."
     else:
-        sales[1] += float(d[3])
-print "Salespeople generated %0.2f in revenue." % sales[1]
-print "Internet sales generated %0.2f in revenue." % sales[0]
-if sales[1] > sales[0]:
-    print "Guess there's some value to those salespeople after all."
-else:
-    print "Time to fire the sales team! Online sales rule all!"
+        print "Time to fire the sales team! Online sales rule all!"
 print "*" * section_separator
 
 update_melon_tallies("orders-by-type.txt")
 generate_sales_report()
+generate_internet_salespeople_report("orders-with-sales.txt")
