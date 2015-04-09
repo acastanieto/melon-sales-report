@@ -5,8 +5,10 @@ section_separator = 80
 print "*" * section_separator
 
 melon_tallies = {"Musk":0, "Hybrid":0, "Watermelon":0, "Winter": 0}
+melon_prices = { "Musk": 1.15, "Hybrid": 1.30, "Watermelon": 1.75, "Winter": 4.00 }
 
-def gen_orders_by_type_report(file_name):    #"orders-by-type.txt"
+
+def update_melon_tallies(file_name):    #"orders-by-type.txt"
     open_file = open(file_name)
 
 
@@ -18,14 +20,13 @@ def gen_orders_by_type_report(file_name):    #"orders-by-type.txt"
 
     f.close()
 
-
-melon_prices = { "Musk": 1.15, "Hybrid": 1.30, "Watermelon": 1.75, "Winter": 4.00 }
-total_revenue = 0
-for melon_type in melon_tallies:
-    price = melon_prices[melon_type]
-    revenue = price * melon_tallies[melon_type]
-    total_revenue += revenue
-    print "We sold %d %s melons at %0.2f each for a total of %0.2f" % (melon_tallies[melon_type], melon_type, price, revenue)
+def generate_sales_report():
+    total_revenue = 0
+    for melon_type in melon_tallies:
+        price = melon_prices[melon_type]
+        revenue = price * melon_tallies[melon_type]
+        total_revenue += revenue
+        print "We sold %d %s melons at %0.2f each for a total of %0.2f" % (melon_tallies[melon_type], melon_type, price, revenue)
 
 print "*" * section_separator
 
@@ -45,4 +46,5 @@ else:
     print "Time to fire the sales team! Online sales rule all!"
 print "*" * section_separator
 
-gen_orders_by_type_report("orders-by-type.txt")
+update_melon_tallies("orders-by-type.txt")
+generate_sales_report()
