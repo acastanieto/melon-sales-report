@@ -18,7 +18,7 @@ def generate_sales_report(file_name):
         print "We sold %d %s melons at %0.2f each for a total of %0.2f" % (melon_tallies[melon_type], melon_type, price, revenue)
 
 
-def generate_internet_salespeople_report(file_name):
+def generate_internet_phonesales_report(file_name):
     file_name = open(file_name)
     internet_sales = 0
     salespeople_sales = 0
@@ -38,8 +38,15 @@ def generate_internet_salespeople_report(file_name):
         print "Time to fire the sales team! Online sales rule all!"
 
 
-melon_tallies = {"Musk":0, "Hybrid":0, "Watermelon":0, "Winter": 0}
-melon_prices = { "Musk": 1.15, "Hybrid": 1.30, "Watermelon": 1.75, "Winter": 4.00 }
+melon_tallies = {"Musk":0,
+                 "Hybrid":0,
+                 "Watermelon":0,
+                 "Winter": 0}
+
+melon_prices = {"Musk": 1.15,
+                "Hybrid": 1.30,
+                "Watermelon": 1.75, 
+                "Winter": 4.00 }
 
 section_separator = 80
 
@@ -50,4 +57,4 @@ generate_sales_report("orders-by-type.txt")
 
 print "*" * section_separator
 
-generate_internet_salespeople_report("orders-with-sales.txt")
+generate_internet_phonesales_report("orders-with-sales.txt")
